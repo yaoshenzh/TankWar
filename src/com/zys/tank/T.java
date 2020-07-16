@@ -1,6 +1,4 @@
 package com.zys.tank;
-import java.awt.Frame;
-
 
 public class T {
 
