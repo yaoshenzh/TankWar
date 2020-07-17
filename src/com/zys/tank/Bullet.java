@@ -21,9 +21,8 @@ public class Bullet {
 	public void paint(Graphics graph) {
 		Color color = graph.getColor();
 		graph.setColor(Color.RED);
-		graph.setColor(color);
-		
 		graph.fillOval(x, y, WIDTH, HEIGHT);
+		graph.setColor(color);
 		move();
 	}
 

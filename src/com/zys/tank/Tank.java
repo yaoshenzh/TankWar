@@ -1,5 +1,6 @@
 package com.zys.tank;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Tank {
@@ -33,7 +34,10 @@ public class Tank {
 	}
 	
 	public void paint(Graphics graph) {
+		Color color = graph.getColor();
+		graph.setColor(Color.GREEN);
 		graph.fillRect(x, y, 50, 50);
+		graph.setColor(color);
 		move(direction);
 	}
 
