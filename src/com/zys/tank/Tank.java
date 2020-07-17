@@ -8,8 +8,16 @@ public class Tank {
 	private int x;
 	private int y;
 	private Direction direction;
-
+	private boolean isMoving = false;
 	
+	public boolean isMoving() {
+		return isMoving;
+	}
+
+	public void setMoving(boolean isMoving) {
+		this.isMoving = isMoving;
+	}
+
 	public Direction getDirection() {
 		return direction;
 	}
@@ -26,20 +34,27 @@ public class Tank {
 	
 	public void paint(Graphics graph) {
 		graph.fillRect(x, y, 50, 50);
-		switch(direction) {
-			case LEFT:
-				x -= SPEED;
-				break;
-			case RIGHT:
-				x += SPEED;
-				break;
-			case UP:
-				y -= SPEED;
-				break;
-			case DOWN:
-				y += SPEED;
-				break;
-		};
+		move(direction);
 	}
 
+	private void move(Direction direction) {
+		if (!isMoving) {
+			return;
+		}
+		switch(direction) {
+		case LEFT:
+			x -= SPEED;
+			break;
+		case RIGHT:
+			x += SPEED;
+			break;
+		case UP:
+			y -= SPEED;
+			break;
+		case DOWN:
+			y += SPEED;
+			break;
+		};
+	}
+		
 }

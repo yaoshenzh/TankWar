@@ -98,20 +98,25 @@ public class TankFrame extends Frame {
 		
 		// set direction.
 		private void setMainTankDirection() {
-			if (left) {
-				myTank.setDirection(Direction.LEFT);
-			}
-			
-			if (right) {
-				myTank.setDirection(Direction.RIGHT);
-			}
-			
-			if (up) {
-				myTank.setDirection(Direction.UP);
-			}
-			
-			if (down) {
-				myTank.setDirection(Direction.DOWN);
+			if (!left && !right && !up && !down) {
+				myTank.setMoving(false);
+			} else  {
+				myTank.setMoving(true);
+				if (left) {
+					myTank.setDirection(Direction.LEFT);
+				}
+				
+				if (right) {
+					myTank.setDirection(Direction.RIGHT);
+				}
+				
+				if (up) {
+					myTank.setDirection(Direction.UP);
+				}
+				
+				if (down) {
+					myTank.setDirection(Direction.DOWN);
+				}
 			}
 		}
 	}
