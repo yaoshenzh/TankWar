@@ -8,15 +8,18 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TankFrame extends Frame {
 	
-	Image offScreenImage = null;
-	private static final int GAME_WIDTH = 800;
-	private static final int GAME_HEIGHT = 600;
+	static final int GAME_WIDTH = 800;
+	static final int GAME_HEIGHT = 600;
 	
+	private Image offScreenImage = null;
 	Tank myTank = new Tank(200, 200, Direction.DOWN, this);
-	Bullet bullet = new Bullet(300, 300, Direction.DOWN);
+	List<Bullet> bullets = new ArrayList<>();
+	Bullet bullet = new Bullet(300, 300, Direction.DOWN, this);
 	
 	public TankFrame() {
 		// Set Game Window
@@ -43,7 +46,9 @@ public class TankFrame extends Frame {
 		// give the paint to myTank.
 		// Think why the code like this?
 		myTank.paint(graph);
-		bullet.paint(graph);
+		for (int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).paint(graph);
+		}
 	}
 
 	class MyKeyListener extends KeyAdapter {
