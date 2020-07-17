@@ -17,6 +17,11 @@ class ImageTest {
 		try {
 			BufferedImage image = ImageIO.read(new File("/home/zys/Documents/images/GoodTank1.png"));
 			Assertions.assertNotNull(image);
+			
+			BufferedImage image1 = ImageIO.read(ImageTest.class.getClassLoader().getResourceAsStream("images/bulletD.gif"));
+			//this.getClass();
+			Assertions.assertNotNull(image1);
+			
 		} catch (IOException e) {
 			
 			e.printStackTrace();

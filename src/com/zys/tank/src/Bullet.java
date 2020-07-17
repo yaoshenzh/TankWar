@@ -26,10 +26,20 @@ public class Bullet {
 		if (!isAlive) {
 			tankFrame.bullets.remove(this);
 		}
-		Color color = graph.getColor();
-		graph.setColor(Color.RED);
-		graph.fillOval(x, y, WIDTH, HEIGHT);
-		graph.setColor(color);
+		switch (bulletDirection) {
+			case LEFT:
+				graph.drawImage(ResourceManager.bulletLeft, x, y, null);
+				break;
+			case RIGHT:
+				graph.drawImage(ResourceManager.bulletRight, x, y, null);
+				break;	
+			case UP:
+				graph.drawImage(ResourceManager.bulletUp, x, y, null);
+				break;
+			case DOWN:
+				graph.drawImage(ResourceManager.bulletDown, x, y, null);
+				break;
+		}
 		move();
 	}
 
