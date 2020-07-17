@@ -1,4 +1,4 @@
-package com.zys.tank;
+package com.zys.tank.src;
 
 public enum Direction {
 	LEFT,
