@@ -5,8 +5,8 @@ import java.awt.Graphics;
 
 public class Bullet {
 	private static final int SPEED = 10;
-	private static int WIDTH =30;
-	private static int HEIGHT = 30;
+	public static int WIDTH = ResourceManager.bulletUp.getWidth();
+	public static int HEIGHT = ResourceManager.bulletUp.getHeight();
 	
 	private int x;
 	private int y;

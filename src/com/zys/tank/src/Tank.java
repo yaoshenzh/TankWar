@@ -4,6 +4,8 @@ import java.awt.Graphics;
 
 public class Tank {
 	private static final int SPEED = 5;
+	public static int WIDTH = ResourceManager.tankTowardsDown.getWidth();
+	public static int HEIGHT = ResourceManager.tankTowardsDown.getHeight();
 	
 	private int x;
 	private int y;
@@ -77,6 +79,9 @@ public class Tank {
 	}
 
 	public void fire() {
-		tankFrame.bullets.add(new Bullet(this.x, this.y, this.direction, this.tankFrame));
+		int bulletX =  this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
+		int bulletY =  this.y + Tank.HEIGHT/2 - Bullet.WIDTH/2;
+		
+		tankFrame.bullets.add(new Bullet(bulletX, bulletY, this.direction, this.tankFrame));
 	} 
 }

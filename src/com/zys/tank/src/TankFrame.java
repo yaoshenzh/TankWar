@@ -17,9 +17,9 @@ public class TankFrame extends Frame {
 	static final int GAME_HEIGHT = 600;
 	
 	private Image offScreenImage = null;
-	Tank myTank = new Tank(200, 200, Direction.DOWN, this);
+	Tank myTank = new Tank(200, 400, Direction.DOWN, this);
+	List<Tank> enemies = new ArrayList<>();
 	List<Bullet> bullets = new ArrayList<>();
-	Bullet bullet = new Bullet(300, 300, Direction.DOWN, this);
 	
 	public TankFrame() {
 		// Set Game Window
@@ -48,6 +48,10 @@ public class TankFrame extends Frame {
 		myTank.paint(graph);
 		for (int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).paint(graph);
+		}
+		
+		for (int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).paint(graph);
 		}
 	}
 
