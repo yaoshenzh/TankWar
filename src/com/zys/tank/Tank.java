@@ -3,7 +3,7 @@ package com.zys.tank;
 import java.awt.Graphics;
 
 public class Tank {
-	private static final int SPEED = 10;
+	private static final int SPEED = 5;
 	
 	private int x;
 	private int y;
