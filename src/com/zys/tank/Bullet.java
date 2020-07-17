@@ -7,6 +7,7 @@ public class Bullet {
 	private static final int SPEED = 1;
 	private static int WIDTH =30;
 	private static int HEIGHT = 30;
+	
 	private int x;
 	private int y;
 	

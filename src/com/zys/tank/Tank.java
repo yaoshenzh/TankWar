@@ -8,8 +8,19 @@ public class Tank {
 	
 	private int x;
 	private int y;
-	private Direction direction;
+	private Direction direction = Direction.DOWN;
 	private boolean isMoving = false;
+	
+	// Tank hold the reference of TankFrame
+	// Since I want to draw the bullet in tankFrame
+	private TankFrame tankFrame;
+	
+	public Tank(int x, int y, Direction direction, TankFrame tankFrame) {
+		this.x = x;
+		this.y = y;
+		this.direction = direction;
+		this.tankFrame = tankFrame;
+	}
 	
 	public boolean isMoving() {
 		return isMoving;
@@ -27,12 +38,6 @@ public class Tank {
 		this.direction = direction;
 	}
 
-	public Tank(int x, int y, Direction direction) {
-		this.x = x;
-		this.y = y;
-		this.direction = direction;
-	}
-	
 	public void paint(Graphics graph) {
 		Color color = graph.getColor();
 		graph.setColor(Color.GREEN);
@@ -60,5 +65,8 @@ public class Tank {
 			break;
 		};
 	}
-		
+
+	public void fire() {
+		tankFrame.bullet = new Bullet(this.x, this.y, this.direction);
+	}
 }

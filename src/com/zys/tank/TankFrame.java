@@ -15,7 +15,7 @@ public class TankFrame extends Frame {
 	private static final int GAME_WIDTH = 800;
 	private static final int GAME_HEIGHT = 600;
 	
-	Tank myTank = new Tank(200, 200, Direction.DOWN);
+	Tank myTank = new Tank(200, 200, Direction.DOWN, this);
 	Bullet bullet = new Bullet(300, 300, Direction.DOWN);
 	
 	public TankFrame() {
@@ -96,6 +96,9 @@ public class TankFrame extends Frame {
 				break;
 			case KeyEvent.VK_DOWN:
 				down = false;
+				break;
+			case KeyEvent.VK_CONTROL:
+				myTank.fire();
 				break;
 
 			default:
