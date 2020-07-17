@@ -9,10 +9,7 @@ import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
 
-	private int x = 200;
-	private int y = 200;
-	private Direction direction = Direction.DOWN;
-	private final int speed = 10;
+	Tank myTank = new Tank(200, 200, Direction.DOWN);
 
 	public TankFrame() {
 		// Set Game Window
@@ -36,21 +33,9 @@ public class TankFrame extends Frame {
 	@Override
 	// move tank according to the it's direction.
 	public void paint(Graphics graph) {
-		graph.fillRect(x, y, 50, 50);
-		switch(direction) {
-			case LEFT:
-				x -= speed;
-				break;
-			case RIGHT:
-				x += speed;
-				break;
-			case UP:
-				y -= speed;
-				break;
-			case DOWN:
-				y += speed;
-				break;
-		};
+		// give the paint to myTank.
+		// Think why the code like this?
+		myTank.paint(graph);
 	}
 
 	class MyKeyListener extends KeyAdapter {
@@ -114,19 +99,19 @@ public class TankFrame extends Frame {
 		// set direction.
 		private void setMainTankDirection() {
 			if (left) {
-				direction = Direction.LEFT;
+				myTank.setDirection(Direction.LEFT);
 			}
 			
 			if (right) {
-				direction = Direction.RIGHT;
+				myTank.setDirection(Direction.RIGHT);
 			}
 			
 			if (up) {
-				direction = Direction.UP;
+				myTank.setDirection(Direction.UP);
 			}
 			
 			if (down) {
-				direction = Direction.DOWN;
+				myTank.setDirection(Direction.DOWN);
 			}
 		}
 	}
