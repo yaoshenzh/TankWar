@@ -6,7 +6,7 @@ public class T {
 		TankFrame f = new TankFrame();
 		
 		for (int i = 0; i < 5; i++) {
-			f.enemies.add(new Tank(50 + i*80, 200, Direction.DOWN, f));
+			f.enemies.add(new Tank(50 + i*80, 200, Direction.DOWN, Group.BAD, f));
 		}
 		
 		while(true) {

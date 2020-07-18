@@ -17,7 +17,7 @@ public class TankFrame extends Frame {
 	static final int GAME_HEIGHT = 600;
 	
 	private Image offScreenImage = null;
-	Tank myTank = new Tank(200, 400, Direction.DOWN, this);
+	Tank myTank = new Tank(200, 400, Direction.DOWN, Group.GOOD, this);
 	List<Tank> enemies = new ArrayList<>();
 	List<Bullet> bullets = new ArrayList<>();
 	

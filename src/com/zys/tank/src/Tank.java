@@ -1,9 +1,10 @@
 package com.zys.tank.src;
 
 import java.awt.Graphics;
+import java.util.Random;
 
 public class Tank {
-	private static final int SPEED = 5;
+	private static final int SPEED = 1;
 	public static int WIDTH = ResourceManager.tankTowardsDown.getWidth();
 	public static int HEIGHT = ResourceManager.tankTowardsDown.getHeight();
 	
@@ -22,21 +23,25 @@ public class Tank {
 	public void setY(int y) {
 		this.y = y;
 	}
-
+	
+	private Group group = Group.BAD;
 	private int x;
 	private int y;
 	private Direction direction = Direction.DOWN;
-	private boolean isMoving = false;
+	private boolean isMoving = true;
 	private boolean isAlive = true;
+	private Random random = new Random();
+	
 	
 	// Tank hold the reference of TankFrame
 	// Since I want to draw the bullet in tankFrame
 	private TankFrame tankFrame;
 	
-	public Tank(int x, int y, Direction direction, TankFrame tankFrame) {
+	public Tank(int x, int y, Direction direction, Group group, TankFrame tankFrame) {
 		this.x = x;
 		this.y = y;
 		this.direction = direction;
+		this.group = group;
 		this.tankFrame = tankFrame;
 	}
 	
@@ -58,8 +63,9 @@ public class Tank {
 
 	public void paint(Graphics graph) {
 		if (!isAlive) {
-//			return;
+			//return;
 			tankFrame.enemies.remove(this);
+			return;
 		}
 		switch (direction) {
 			case LEFT:
@@ -97,13 +103,25 @@ public class Tank {
 			y += SPEED;
 			break;
 		};
+		
+		if (random.nextInt(10) > 8) {
+			this.fire();
+		}
 	}
 
 	public void fire() {
 		int bulletX =  this.x + Tank.WIDTH/2 - Bullet.WIDTH/2;
 		int bulletY =  this.y + Tank.HEIGHT/2 - Bullet.WIDTH/2;
 		
-		tankFrame.bullets.add(new Bullet(bulletX, bulletY, this.direction, this.tankFrame));
+		tankFrame.bullets.add(new Bullet(bulletX, bulletY, this.direction, this.group, this.tankFrame));
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
 	}
 
 	public void die() {

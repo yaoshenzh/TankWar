@@ -12,16 +12,26 @@ public class Bullet {
 	private int y;
 	private Direction bulletDirection;
 	private boolean isAlive = true;
+	private Group group = Group.BAD;
 	
 	private TankFrame tankFrame;
 	
-	public Bullet(int x, int y, Direction bulletDirection, TankFrame tankFrame) {
+	public Bullet(int x, int y, Direction bulletDirection, Group group, TankFrame tankFrame) {
 		this.bulletDirection = bulletDirection;
 		this.x = x;
 		this.y = y;
+		this.group = group;
 		this.tankFrame = tankFrame;
 	}
 	
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
 	public void paint(Graphics graph) {
 		if (!isAlive) {
 			tankFrame.bullets.remove(this);
@@ -66,8 +76,12 @@ public class Bullet {
 		}
 	}
 	
-
 	public void collideWithTank(Tank tank) {
+		if (this.group == tank.getGroup()) {
+			return;
+		}
+		
+		//TODO:Use only one Rectangle to record the position of Bullet.
 		Rectangle bulletImage = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
 		Rectangle tankImage = new Rectangle(tank.getX(), tank.getY(), tank.WIDTH, tank.HEIGHT);
 		
