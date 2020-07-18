@@ -1,7 +1,7 @@
 package com.zys.tank.src;
 
-import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public class Bullet {
 	private static final int SPEED = 10;
@@ -65,5 +65,19 @@ public class Bullet {
 			isAlive = false;
 		}
 	}
+	
 
+	public void collideWithTank(Tank tank) {
+		Rectangle bulletImage = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
+		Rectangle tankImage = new Rectangle(tank.getX(), tank.getY(), tank.WIDTH, tank.HEIGHT);
+		
+		if (bulletImage.intersects(tankImage)) {
+			tank.die();
+			this.die();
+		}
+	}
+
+	private void die() {
+		this.isAlive = false;
+	}
 }

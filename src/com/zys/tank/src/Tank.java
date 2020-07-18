@@ -7,10 +7,27 @@ public class Tank {
 	public static int WIDTH = ResourceManager.tankTowardsDown.getWidth();
 	public static int HEIGHT = ResourceManager.tankTowardsDown.getHeight();
 	
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
 	private int x;
 	private int y;
 	private Direction direction = Direction.DOWN;
 	private boolean isMoving = false;
+	private boolean isAlive = true;
 	
 	// Tank hold the reference of TankFrame
 	// Since I want to draw the bullet in tankFrame
@@ -40,6 +57,10 @@ public class Tank {
 	}
 
 	public void paint(Graphics graph) {
+		if (!isAlive) {
+//			return;
+			tankFrame.enemies.remove(this);
+		}
 		switch (direction) {
 			case LEFT:
 				graph.drawImage(ResourceManager.tankTowardsLeft, x, y, null);
@@ -83,5 +104,9 @@ public class Tank {
 		int bulletY =  this.y + Tank.HEIGHT/2 - Bullet.WIDTH/2;
 		
 		tankFrame.bullets.add(new Bullet(bulletX, bulletY, this.direction, this.tankFrame));
+	}
+
+	public void die() {
+		isAlive = false;
 	} 
 }

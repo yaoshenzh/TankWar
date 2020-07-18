@@ -43,6 +43,10 @@ public class TankFrame extends Frame {
 	@Override
 	// move tank according to the it's direction.
 	public void paint(Graphics graph) {
+		Color color = graph.getColor();
+		graph.setColor(Color.WHITE);
+		graph.drawString("# of bullet:" + bullets.size(), 10, 60);
+		graph.drawString("# of enemies:" + enemies.size(), 10, 80);
 		// give the paint to myTank.
 		// Think why the code like this?
 		myTank.paint(graph);
@@ -52,6 +56,12 @@ public class TankFrame extends Frame {
 		
 		for (int i = 0; i < enemies.size(); i++) {
 			enemies.get(i).paint(graph);
+		}
+		
+		for (int i = 0; i < bullets.size(); i++) {
+			for (int j = 0; j < enemies.size(); j++) {
+				bullets.get(i).collideWithTank(enemies.get(j));
+			}
 		}
 	}
 
