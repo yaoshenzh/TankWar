@@ -21,6 +21,7 @@ public class ResourceManager {
 	
 	static {
 		try {
+			
 			tankTowardsUp = ImageIO.read(ResourceManager.class.getClassLoader().getResourceAsStream("images/BadTank1.png"));
 			tankTowardsLeft = ImageUtil.rotateImage(tankTowardsUp, -90);
 			tankTowardsRight = ImageUtil.rotateImage(tankTowardsUp, 90);

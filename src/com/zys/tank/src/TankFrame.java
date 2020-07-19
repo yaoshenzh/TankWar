@@ -18,10 +18,9 @@ public class TankFrame extends Frame {
 	
 	private Image offScreenImage = null;
 	Tank myTank = new Tank(200, 400, Direction.DOWN, Group.GOOD, this);
+	List<Explosion> explosion = new ArrayList<>();
 	List<Tank> enemies = new ArrayList<>();
 	List<Bullet> bullets = new ArrayList<>();
-	
-	Explosion explosion = new Explosion(100, 100, this);
 	
 	public TankFrame() {
 		// Set Game Window
@@ -49,6 +48,7 @@ public class TankFrame extends Frame {
 		graph.setColor(Color.WHITE);
 		graph.drawString("# of bullet:" + bullets.size(), 10, 60);
 		graph.drawString("# of enemies:" + enemies.size(), 10, 80);
+		graph.drawString("# of explosion:" + explosion.size(), 10, 100);
 		// give the paint to myTank.
 		// Think why the code like this?
 		myTank.paint(graph);
@@ -66,7 +66,10 @@ public class TankFrame extends Frame {
 			}
 		}
 		
-		explosion.paint(graph);
+		for (int i = 0; i < explosion.size(); i++) {
+			explosion.get(i).paint(graph);
+		}
+
 	}
 
 	class MyKeyListener extends KeyAdapter {

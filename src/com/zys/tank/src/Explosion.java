@@ -22,7 +22,7 @@ public class Explosion {
 	public void paint(Graphics graph) {
 		graph.drawImage(ResourceManager.explosion[step++], x, y, null);
 		if (step >= ResourceManager.explosion.length) {
-			step = 0;
+			tankFrame.explosion.remove(this);
 		}
 	}
 
