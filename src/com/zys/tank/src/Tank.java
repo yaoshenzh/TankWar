@@ -1,10 +1,11 @@
 package com.zys.tank.src;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.Random;
 
 public class Tank {
-	private static final int SPEED = 1;
+	private static final int SPEED = 10;
 	public static int WIDTH = ResourceManager.goodTankTowardsDown.getWidth();
 	public static int HEIGHT = ResourceManager.goodTankTowardsDown.getHeight();
 	
@@ -37,12 +38,19 @@ public class Tank {
 	// Since I want to draw the bullet in tankFrame
 	private TankFrame tankFrame;
 	
+	public Rectangle rect = new Rectangle();
+	
 	public Tank(int x, int y, Direction direction, Group group, TankFrame tankFrame) {
 		this.x = x;
 		this.y = y;
 		this.direction = direction;
 		this.group = group;
 		this.tankFrame = tankFrame;
+		
+		rect.x = this.x;
+		rect.y = this.y;
+		rect.width = WIDTH;
+		rect.height = HEIGHT;
 	}
 	
 	public boolean isMoving() {
@@ -106,12 +114,37 @@ public class Tank {
 			break;
 		};
 		
+		
 		if (this.group == Group.BAD && random.nextInt(100) > 95) {
 			this.fire();
 		}
 		
-		if (this.group == Group.BAD && random.nextInt(100)  > 98) {
+		if (this.group == Group.BAD && random.nextInt(100)  > 96) {
 			moveToRandomDirections();
+		}
+		
+		boundsCheck();
+		
+		rect.x = x;
+		rect.y = y;
+		
+	}
+
+	private void boundsCheck() {
+		if (this.x < 2) {
+			x = 2;
+		}
+		
+		if (this.y < 28) {
+			y = 28;
+		}
+		
+		if (this.y > TankFrame.GAME_HEIGHT - Tank.HEIGHT) {
+			y = TankFrame.GAME_HEIGHT - Tank.HEIGHT;
+		}
+		
+		if (this.x > TankFrame.GAME_WIDTH - Tank.WIDTH) {
+			x = TankFrame.GAME_WIDTH - Tank.WIDTH;
 		}
 		
 	}

@@ -14,6 +14,8 @@ public class Bullet {
 	private boolean isAlive = true;
 	private Group group = Group.BAD;
 	
+	public Rectangle rect = new Rectangle();
+	
 	private TankFrame tankFrame;
 	
 	public Bullet(int x, int y, Direction bulletDirection, Group group, TankFrame tankFrame) {
@@ -22,6 +24,11 @@ public class Bullet {
 		this.y = y;
 		this.group = group;
 		this.tankFrame = tankFrame;
+		
+		rect.x = this.x;
+		rect.y = this.y;
+		rect.width = WIDTH;
+		rect.height = HEIGHT;
 	}
 	
 	public Group getGroup() {
@@ -74,6 +81,9 @@ public class Bullet {
 		if (x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
 			isAlive = false;
 		}
+		
+		rect.x = this.x;
+		rect.y = this.y;
 	}
 	
 	public void collideWithTank(Tank tank) {
@@ -81,11 +91,7 @@ public class Bullet {
 			return;
 		}
 		
-		//TODO:Use only one Rectangle to record the position of Bullet.
-		Rectangle bulletImage = new Rectangle(this.x, this.y, WIDTH, HEIGHT);
-		Rectangle tankImage = new Rectangle(tank.getX(), tank.getY(), tank.WIDTH, tank.HEIGHT);
-		
-		if (bulletImage.intersects(tankImage)) {
+		if (rect.intersects(tank.rect)) {
 			tank.die();
 			this.die();
 			int eX =  tank.getX() + Tank.WIDTH/2 - Explosion.WIDTH/2;
