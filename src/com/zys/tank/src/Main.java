@@ -1,11 +1,13 @@
 package com.zys.tank.src;
 
-public class T {
+public class Main {
 
 	public static void main(String[] args) {
 		TankFrame f = new TankFrame();
 		
-		for (int i = 0; i < 5; i++) {
+		int initTankCount = Integer.parseInt((String)PropertyManager.get("initTankCount"));
+		
+		for (int i = 0; i < initTankCount; i++) {
 			f.enemies.add(new Tank(50 + i*80, 200, Direction.DOWN, Group.BAD, f));
 		}
 		
