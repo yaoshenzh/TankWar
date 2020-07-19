@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class Tank {
 	private static final int SPEED = 1;
-	public static int WIDTH = ResourceManager.tankTowardsDown.getWidth();
-	public static int HEIGHT = ResourceManager.tankTowardsDown.getHeight();
+	public static int WIDTH = ResourceManager.goodTankTowardsDown.getWidth();
+	public static int HEIGHT = ResourceManager.goodTankTowardsDown.getHeight();
 	
 	public int getX() {
 		return x;
@@ -67,18 +67,20 @@ public class Tank {
 			tankFrame.enemies.remove(this);
 			return;
 		}
+		
+
 		switch (direction) {
 			case LEFT:
-				graph.drawImage(ResourceManager.tankTowardsLeft, x, y, null);
+				graph.drawImage(this.group == Group.GOOD? ResourceManager.goodTankTowardsLeft : ResourceManager.badTankTowardsLeft, x, y, null);
 				break;
 			case RIGHT:
-				graph.drawImage(ResourceManager.tankTowardsRight, x, y, null);
-				break;	
+				graph.drawImage(this.group == Group.GOOD? ResourceManager.goodTankTowardsRight : ResourceManager.badTankTowardsRight, x, y, null);
+				break;
 			case UP:
-				graph.drawImage(ResourceManager.tankTowardsUp, x, y, null);
+				graph.drawImage(this.group == Group.GOOD? ResourceManager.goodTankTowardsUp : ResourceManager.badTankTowardsUp, x, y, null);
 				break;
 			case DOWN:
-				graph.drawImage(ResourceManager.tankTowardsDown, x, y, null);
+				graph.drawImage(this.group == Group.GOOD? ResourceManager.goodTankTowardsDown : ResourceManager.badTankTowardsDown, x, y, null);
 				break;
 		}
 			
